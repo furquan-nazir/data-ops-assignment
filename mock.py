@@ -85,11 +85,10 @@ def mock_aws():
                         'S': str(user['part_color']),
                     },
                 },
-                ReturnConsumedCapacity='TOTAL',
                 TableName=table,
             )
 
-    response = response = dynamodb.scan(TableName=table)
+    response = dynamodb.scan(TableName=table)
     print(response)
 
 
