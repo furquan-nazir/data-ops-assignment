@@ -7,18 +7,13 @@ from moto import mock_s3, mock_dynamodb2
 @mock_s3
 @mock_dynamodb2
 def mock_aws():
-    ### S3
+    # S3
     # Create mock client
-    s3 = boto3.client('s3', region_name='eu-central-1')
+    s3 = boto3.client('s3', region_name='us-east-1')
 
     # Create mock Bucket
-    bucketname = 'vitesco'
-    response = s3.create_bucket(
-        Bucket=bucketname,
-        CreateBucketConfiguration={
-            'LocationConstraint': 'eu-central-1',
-        },
-    )
+    bucketname = 'vitesco-data-ops-assignment-2021'
+    response = s3.create_bucket(Bucket=bucketname)
 
     # Upload data to mock s3
     path = "data/plant"
@@ -33,31 +28,28 @@ def mock_aws():
     response = s3.list_objects_v2(Bucket=bucketname)
     print([object["Key"] for object in response["Contents"]])
 
-    ### DynamoDB
-    dynamodb = boto3.client('dynamodb')
+    # DynamoDB
+    # Create mock client
+    dynamodb = boto3.client('dynamodb', region_name='us-east-1')
 
-    table = "users"
-
+    # Create DynamoDB table
+    table = "vitesco-users"
     dynamodb.create_table(
         TableName=table,
-        KeySchema=[
-            {
-                'AttributeName': 'id',
-                'KeyType': 'HASH'  # Partition key
-            },
-            {
-                'AttributeName': 'age',
-                'KeyType': 'RANGE'  # Sort key
-            }
-        ],
+        ProvisionedThroughput={
+            'ReadCapacityUnits': 10,
+            'WriteCapacityUnits': 10,
+        },
+        KeySchema=[{
+            'AttributeName': 'id',
+            'KeyType': 'HASH'  # Partition key
+        }],
         AttributeDefinitions=[{
             'AttributeName': 'id',
             'AttributeType': 'N'
-        }, {
-            'AttributeName': 'age',
-            'AttributeType': 'N'
         }])
 
+    # Insert DynamoDB records
     with open('data/user/users.json') as json_file:
         data = json.load(json_file)
         for user in data:
@@ -76,7 +68,7 @@ def mock_aws():
                         'S': str(user['city']),
                     },
                     'age': {
-                        'N': str(user['age']),
+                        'S': str(user['age']),
                     },
                     'gender': {
                         'S': str(user['gender']),
