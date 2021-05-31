@@ -20,11 +20,13 @@ Please complete the following tasks:
 3. Select columns that will probably be important to predict the cause of defects.
 4. If you removed columns, explain why you removed those.
 5. Identify what is causing the defects.
-6. Build a machine learning model to predict products with defects.
-7. Describe hyper-parameters in your model and how you would change them to improve the performance of the model.
-8. What is regularization? What is the regularization parameter in your model?
 
 **Bonus challenge:**
+
+1. Build a machine learning model to predict products with defects.
+2. Describe hyper-parameters in your model and how you would change them to improve the performance of the model.
+3. What is regularization? What is the regularization parameter in your model?
+
 Our marketing team would like to get more insights regarding the data we have to do targeting advertisement.
 They raised the following questions:
 
