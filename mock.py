@@ -61,6 +61,9 @@ def mock_aws():
                     'first_name': {
                         'S': str(user['first_name']),
                     },
+                    'last_name': {
+                        'S': str(user['last_name']),
+                    },
                     'email': {
                         'S': str(user['email']),
                     },
