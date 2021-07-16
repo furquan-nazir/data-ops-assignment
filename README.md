@@ -3,6 +3,11 @@
 This assignment will simulate a scenario where we have data from different departments stored in multiple formats and storage methods.
 We include a mock.py file that you can use to mock an AWS account with this assignment's data.
 
+## Purpose
+
+The purpose of the exercise is to understand how you approach the problem, the decisions you make, and your ability to use code to accomplish things.
+Please timebox your effort to 2-4 hours. An incomplete solution is not failing the exercise, but please point out the missing points and the challenges you faced.
+
 ## Data
 
 **Defects:**
